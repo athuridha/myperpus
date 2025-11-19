@@ -29,7 +29,7 @@
 @section('content')
 <!-- Statistics -->
 <div class="row mb-4">
-    <div class="col-md-3">
+    <div class="col-xl-3 col-md-6 mb-3">
         <div class="card stat-card primary">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-xl-3 col-md-6 mb-3">
         <div class="card stat-card danger">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
@@ -55,7 +55,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-xl-3 col-md-6 mb-3">
         <div class="card stat-card warning">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
@@ -68,7 +68,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-xl-3 col-md-6 mb-3">
         <div class="card stat-card info">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
@@ -85,7 +85,7 @@
 
 <div class="row">
     <!-- Today's Borrowings -->
-    <div class="col-md-6 mb-4">
+    <div class="col-lg-6 mb-4">
         <div class="card">
             <div class="card-header">
                 <i class="bi bi-calendar-check me-2"></i>Peminjaman Hari Ini

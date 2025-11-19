@@ -124,8 +124,8 @@ class BorrowingController extends Controller
             // Return book stock
             $borrowing->book->incrementStock();
 
-            // Update borrowing status
-            $borrowing->update(['status' => 'cancelled']);
+            // Delete borrowing record
+            $borrowing->delete();
 
             // Create notification
             Notification::createForUser(

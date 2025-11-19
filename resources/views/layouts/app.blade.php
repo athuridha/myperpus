@@ -37,6 +37,7 @@
             padding-top: 1rem;
             overflow-y: auto;
             z-index: 1000;
+            transition: transform 0.3s ease-in-out;
         }
 
         .sidebar .brand {
@@ -80,6 +81,7 @@
             position: sticky;
             top: 0;
             z-index: 999;
+            transition: margin-left 0.3s ease-in-out;
         }
 
         .card {
@@ -112,22 +114,85 @@
         .table th {
             font-weight: 600;
             color: var(--primary-color);
+            white-space: nowrap;
+        }
+
+        .btn-group-sm .btn {
+            white-space: nowrap;
+        }
+
+        /* Sidebar overlay for mobile */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
         }
 
         @media (max-width: 768px) {
             .sidebar {
                 transform: translateX(-100%);
-                transition: transform 0.3s;
             }
 
             .sidebar.show {
                 transform: translateX(0);
             }
 
+            .sidebar-overlay.show {
+                display: block;
+            }
+
             .main-content,
             .top-navbar {
                 margin-left: 0;
             }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .top-navbar {
+                padding: 0.75rem 1rem;
+            }
+
+            .card-body {
+                padding: 1rem;
+            }
+
+            .btn-group {
+                flex-wrap: wrap;
+            }
+
+            .table {
+                font-size: 0.875rem;
+            }
+
+            .stat-card .h2 {
+                font-size: 1.5rem;
+            }
+
+            /* Make search forms stack on mobile */
+            .row.g-3 > div {
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .top-navbar .dropdown-toggle span {
+                display: none;
+            }
+
+            .card-header {
+                font-size: 0.9rem;
+            }
+
+            h1, .h1 { font-size: 1.5rem; }
+            h2, .h2 { font-size: 1.25rem; }
+            h3, .h3 { font-size: 1.1rem; }
         }
     </style>
     @stack('styles')
@@ -135,6 +200,9 @@
 <body>
     <!-- Sidebar -->
     @auth
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    
     <div class="sidebar" id="sidebar">
         <a href="{{ route(auth()->user()->role . '.dashboard') }}" class="brand">
             <i class="bi bi-book-fill"></i> MyPerpus
@@ -216,9 +284,32 @@
 
     <!-- Sidebar Toggle Script -->
     <script>
-        document.getElementById('sidebarToggle')?.addEventListener('click', function() {
-            document.getElementById('sidebar').classList.toggle('show');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+
+        // Toggle sidebar
+        sidebarToggle?.addEventListener('click', function() {
+            sidebar.classList.toggle('show');
+            sidebarOverlay.classList.toggle('show');
         });
+
+        // Close sidebar when clicking overlay
+        sidebarOverlay?.addEventListener('click', function() {
+            sidebar.classList.remove('show');
+            sidebarOverlay.classList.remove('show');
+        });
+
+        // Close sidebar when clicking a link on mobile
+        if (window.innerWidth <= 768) {
+            const sidebarLinks = document.querySelectorAll('.sidebar .nav-link');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    sidebar.classList.remove('show');
+                    sidebarOverlay.classList.remove('show');
+                });
+            });
+        }
 
         // Auto-dismiss alerts after 5 seconds
         setTimeout(function() {

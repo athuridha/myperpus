@@ -28,9 +28,10 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-lg-4 col-md-5 mb-4">
         <div class="card">
-            <img src="{{ $book->cover_url }}" class="card-img-top" alt="{{ $book->title }}">
+            <img src="{{ $book->cover_url }}" class="card-img-top" alt="{{ $book->title }}"
+                 style="max-height: 400px; object-fit: cover;">
             <div class="card-body">
                 <div class="d-grid gap-2">
                     @if(auth()->user()->canBorrow() && $book->isAvailable())
@@ -76,11 +77,12 @@
         </div>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-lg-8 col-md-7">
         <div class="card">
             <div class="card-body">
                 <h3 class="mb-3">{{ $book->title }}</h3>
 
+                <div class="table-responsive">
                 <table class="table table-borderless">
                     <tr>
                         <th width="200">ISBN</th>
@@ -111,6 +113,7 @@
                         </td>
                     </tr>
                 </table>
+                </div>
 
                 @if($book->description)
                 <hr>
@@ -129,7 +132,7 @@
             <div class="card-body">
                 <div class="row">
                     @foreach($relatedBooks as $related)
-                    <div class="col-md-3 mb-3">
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
                         <div class="card">
                             <img src="{{ $related->cover_url }}" class="card-img-top" alt="{{ $related->title }}"
                                  style="height: 150px; object-fit: cover;">

@@ -60,7 +60,7 @@
 @if($books->count() > 0)
 <div class="row">
     @foreach($books as $book)
-    <div class="col-md-3 mb-4">
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100">
             <img src="{{ $book->cover_url }}" class="card-img-top" alt="{{ $book->title }}"
                  style="height: 250px; object-fit: cover;">

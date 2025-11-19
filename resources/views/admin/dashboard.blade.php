@@ -29,7 +29,7 @@
 @section('content')
 <!-- Statistics Cards -->
 <div class="row mb-4">
-    <div class="col-md-3 mb-3">
+    <div class="col-xl-3 col-md-6 mb-3">
         <div class="card stat-card primary">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
@@ -44,7 +44,7 @@
         </div>
     </div>
 
-    <div class="col-md-3 mb-3">
+    <div class="col-xl-3 col-md-6 mb-3">
         <div class="card stat-card success">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
@@ -59,7 +59,7 @@
         </div>
     </div>
 
-    <div class="col-md-3 mb-3">
+    <div class="col-xl-3 col-md-6 mb-3">
         <div class="card stat-card warning">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
@@ -74,7 +74,7 @@
         </div>
     </div>
 
-    <div class="col-md-3 mb-3">
+    <div class="col-xl-3 col-md-6 mb-3">
         <div class="card stat-card danger">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
